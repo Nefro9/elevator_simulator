@@ -13,7 +13,23 @@ int Elevator::border = houseBorder;
 int tCurrentFloor;
 int tStatus;
 
-bool sortRequest(request i, request j) {
+bool sortRequest(request i, request j)
+{
+    if(i.to != 0) {
+
+        int direction;
+
+        if(i.from < i.to) {
+            direction = 1; // UP
+        } else if(i.from > i.to) {
+            direction = 2; // DOWN
+        }
+
+        if(tStatus == 1 && direction == 2) {
+            return false;
+        }
+    }
+
 
     if(tStatus == 2) {
         if(i.from > j.from && tCurrentFloor > i.from){
