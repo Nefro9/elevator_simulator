@@ -9,6 +9,27 @@ Elevator::Elevator()
 
 int Elevator::border = houseBorder;
 
+// Temp params used in sort
+int tCurrentFloor;
+int tStatus;
+
+bool sortRequest(request i, request j) {
+
+    if(tStatus == 2) {
+        if(i.from > j.from && tCurrentFloor > i.from){
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        if(i.from < j.from && tCurrentFloor < i.from){
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
 float Elevator::getPosX()
 {
     return object.getPosition().x;
@@ -55,15 +76,12 @@ void Elevator::addRequest(int floorFrom, int floorTo)
     requests.push_back(newRequest);
 
 
-    // Display request and reorder
-    std::cout << "___________" << std::endl;
+    tCurrentFloor = getFloor();
+    tStatus       = status;
 
-    for( int i = 0; i < requests.size(); i = i + 1 ) {
-        std::cout << i << ". From :" << requests[i].from << std::endl;
-        std::cout << i << ". To :" << requests[i].to << std::endl;
-
-    }
+    sort(requests.begin(), requests.end(), sortRequest);
 }
+
 
 
 void Elevator::updateStatus()
