@@ -88,12 +88,13 @@ void Elevator::updateStatus()
 {
     targetPosition = elevatorPositionTop + ((border + elevatorHeight)*(floors - requests[0].from));
 
-    if(getPosY() < targetPosition) {
+
+    if(getPosY() > targetPosition) {
 
         status = statusUP;
         object.setFillColor(Color::Yellow);
 
-    } else if(getPosY() > targetPosition)  {
+    } else if(getPosY() < targetPosition)  {
         object.setFillColor(Color::Blue);
         status = statusDOWN;
 
@@ -105,7 +106,6 @@ void Elevator::updateStatus()
 
             if(requests[0].to != 0) {
                 addRequest(requests[0].to, 0);
-
             }
 
             requests.erase(requests.begin());
@@ -119,23 +119,24 @@ void Elevator::updateStatus()
 
 void Elevator::move()
 {
-    if(status == statusUP && targetPosition > getPosY()) {
-
+    if(status == statusUP && targetPosition < getPosY())
+    {
         moveUp();
-    } else if (status == statusDOWN && targetPosition < getPosY()) {
-
+    }
+    else if (status == statusDOWN && targetPosition > getPosY())
+    {
         moveDown();
     }
 }
 
 void Elevator::moveUp()
 {
-    object.setPosition(getPosX(), getPosY() + speed);
+    object.setPosition(getPosX(), getPosY() - speed);
 }
 
 void Elevator::moveDown()
 {
-    object.setPosition(getPosX(), getPosY() - speed);
+    object.setPosition(getPosX(), getPosY() + speed);
 }
 
 void Elevator::drawHouse(RenderWindow &window)
