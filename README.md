@@ -3,7 +3,7 @@
 Visas kodas susidaro is lifto objekto, panaudojant SFML biblioteka (https://www.sfml-dev.org)
 
 
-####Visas kodas veikia pagal atributus ar konstantas.
+###Visas kodas veikia pagal atributus ar konstantas.
 Noredami pakeisti lifto parametrus ar aukstu skaiciu, uztenka pakeisti viena parametra
 Galimybe redaguoti siuos parametrus, nenukenciant veikimui:
 ```
