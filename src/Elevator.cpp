@@ -108,7 +108,7 @@ void Elevator::updateStatus()
     if(getPosY() > targetPosition) {
 
         status = statusUP;
-        object.setFillColor(Color::Yellow);
+        object.setFillColor(Color::Green);
 
     } else if(getPosY() < targetPosition)  {
         object.setFillColor(Color::Blue);
@@ -118,6 +118,7 @@ void Elevator::updateStatus()
 
         if(sleep != 0) {
             sleep -= 1;
+            object.setFillColor(Color::Yellow);
         } else {
 
             if(requests[0].to != 0) {
