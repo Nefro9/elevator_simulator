@@ -138,6 +138,37 @@ void Elevator::drawElevator(RenderWindow &window)
    window.draw(object);
 }
 
+void Elevator::drawRequests(RenderWindow &window, Text text, string prefix)
+{
+    string requestsText = "";
+    string requestsIn = prefix + "requests in: ";
+    string requestsOut = prefix + "requests out: ";
+
+
+    for( int i = 0; i < requests.size(); i = i + 1 ) {
+
+        if(requests[i].to == 0) {
+            requestsOut += std::to_string(requests[i].from) + ", ";
+        } else {
+            requestsIn += std::to_string(requests[i].from) + ", ";
+            requestsOut += std::to_string(requests[i].to) + ", ";
+        }
+    }
+
+    if(requestsIn.size() != 12) {
+        requestsIn = requestsIn.substr(0, requestsIn.size()-2);
+    }
+
+    if(requestsOut.size() != 13) {
+        requestsOut = requestsOut.substr(0, requestsOut.size()-2);
+    }
+
+    requestsText = requestsIn + "\n" + requestsOut;
+
+    text.setString(requestsText);
+    window.draw(text);
+}
+
 
 string Elevator::getStatusText()
 {

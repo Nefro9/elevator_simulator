@@ -28,7 +28,15 @@ namespace {
     const int statusIDLE    = 0;
     const int statusUP      = 1;
     const int statusDOWN    = 2;
+
+    struct request
+    {
+        int from;
+        int to;
+    };
 }
+
+
 
 class Elevator
 {
@@ -38,11 +46,9 @@ class Elevator
     int targetPosition;
     int sleep = sleepTime;
 
-     struct request
-    {
-        int from;
-        int to;
-    };
+    int nextTarget;
+
+
 
     vector<request> requests;
 
@@ -69,6 +75,7 @@ class Elevator
 
         void drawHouse(sf::RenderWindow &window);
         void drawElevator(sf::RenderWindow &window);
+        void drawRequests(sf::RenderWindow &window, Text text, string prefix);
 
         string getStatusText();
 };

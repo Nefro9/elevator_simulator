@@ -19,6 +19,8 @@ int floorGoTo[floors];
 
 Text menu[floors];
 Text floorNumbers[floors];
+Text requestsLeft;
+Text requestsRight;
 Font font;
 
 int main()
@@ -53,6 +55,19 @@ int main()
         // Set default 1 floor
         floorGoTo[i] = 1;
     }
+
+    Text requestsLeft;
+    requestsLeft.setFont(font);
+    requestsLeft.setCharacterSize(12);
+    requestsLeft.setFillColor(Color::White);
+    requestsLeft.setPosition(elevatorPositionLeft -10, elevatorPositionTop + elevatorHeight + (floors * (Elevator::border + elevatorHeight)));
+
+    Text requestsRight;
+    requestsRight.setFont(font);
+    requestsRight.setCharacterSize(12);
+    requestsRight.setFillColor(Color::White);
+    requestsRight.setPosition(elevatorPositionLeft -10, elevatorPositionTop + elevatorHeight + (floors * (Elevator::border + elevatorHeight)) + 40);
+
 
     if (!font.loadFromFile("resources/sansation.ttf"))
         return EXIT_FAILURE;
@@ -107,10 +122,7 @@ int main()
 
 		window.clear();
 
-		// Display menu
-
 		drawMenu(window);
-
 
 
         if(elevatorLeft.haveRequest()) {
@@ -126,9 +138,11 @@ int main()
 
 		elevatorLeft.drawElevator(window);
 		elevatorLeft.drawHouse(window);
+		elevatorLeft.drawRequests(window, requestsLeft, "Left ");
 
-		elevatorRight.drawHouse(window);
 		elevatorRight.drawElevator(window);
+		elevatorRight.drawHouse(window);
+		elevatorRight.drawRequests(window, requestsRight, "Right ");
 
 
 		window.display();
