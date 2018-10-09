@@ -180,7 +180,6 @@ void addRequest(Elevator &eleLeft, Elevator &eleRight)
         direction = statusDOWN;
     }
 
-
     std::cout << "______Info_on_request________" << std::endl;
     if(closest == 1) {
         std::cout << "Shorter: Left" << std::endl;
@@ -201,52 +200,38 @@ void addRequest(Elevator &eleLeft, Elevator &eleRight)
     std::cout << "_____END_Info_on_request______" << std::endl;
 
 
-
-//
-//
-//    if(closest == 1 && ((eleLeft.status == statusUP && eleLeft.getFloor() < from && direction == statusUP) ))   {
-//        eleLeft.addRequest(from, to);
-//
-//    } else if(closest == 2 && ((eleRight.status == statusUP && eleRight.getFloor() < from && direction == statusUP) )) {
-//        eleRight.addRequest(from, to);
-//
-//    } else if(closest == 1 && eleLeft.status == statusDOWN && eleLeft.getFloor() > from && direction == statusDOWN)   {
-//        eleLeft.addRequest(from, to);
-//
-//    } else if(closest == 2 && eleRight.status == statusDOWN && eleRight.getFloor() > from && direction == statusDOWN)   {
-//        eleRight.addRequest(from, to);
-
-    if(closest == 1 && ((eleLeft.status == statusUP && eleLeft.getFloor() < from) ))   {
+    if(closest == 1 && ((eleLeft.status == statusUP && eleLeft.getFloor() < from) || eleLeft.status == statusIDLE))   {
         eleLeft.addRequest(from, to);
+        std::cout << "--- 1 ---" << std::endl;
 
-    } else if(closest == 2 && ((eleRight.status == statusUP && eleRight.getFloor() < from) )) {
+    } else if((eleRight.status == statusUP && eleRight.getFloor() < from) || eleRight.status == statusIDLE) {
         eleRight.addRequest(from, to);
+        std::cout << "--- 2 ---" << std::endl;
 
     } else if(closest == 1 && eleLeft.status == statusDOWN && eleLeft.getFloor() > from)   {
         eleLeft.addRequest(from, to);
+        std::cout << "--- 3 ---" << std::endl;
 
-    } else if(closest == 2 && eleRight.status == statusDOWN && eleRight.getFloor() > from)   {
+    } else if(eleRight.status == statusDOWN && eleRight.getFloor() > from)   {
         eleRight.addRequest(from, to);
-
-
-
-
+        std::cout << "--- 4 ---" << std::endl;
     } else if(closest == 1 && eleLeft.status == statusIDLE)   {
         eleLeft.addRequest(from, to);
+        std::cout << "--- 5 ---" << std::endl;
 
-    } else if(closest == 2 && eleLeft.status == statusIDLE)   {
+    } else if(closest == 2 && eleRight.status == statusIDLE)   {
         eleRight.addRequest(from, to);
+        std::cout << "--- 6 ---" << std::endl;
 
     } else if(closest == 1)   {
         eleLeft.addRequest(from, to);
+        std::cout << "--- 7 ---" << std::endl;
 
     } else if(closest == 2)   {
         eleRight.addRequest(from, to);
+        std::cout << "--- 8 ---" << std::endl;
 
     } else {
         std::cout << "ERROR: Can't select elevator" << std::endl;
     }
 }
-
-
-
