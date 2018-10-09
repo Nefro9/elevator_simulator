@@ -22,6 +22,7 @@ int floorGoTo[floors] = {1, 1, 1, 1, 1};
 
 
 Text menu[floors];
+Text floorNumbers[floors];
 Font font;
 
 
@@ -46,6 +47,18 @@ int main()
         text.setPosition(elevatorPositionLeft + 135,  elevatorPositionTop + 20 + (i * (10 + elevatorHeight)));
 
         menu[i] = text;
+
+        Text floorText;
+        floorText.setFont(font);
+        floorText.setCharacterSize(14);
+        floorText.setFillColor(Color::White);
+        floorText.setPosition(elevatorPositionLeft - Elevator::border - 15,  elevatorPositionTop + elevatorHeight + (i * (Elevator::border + elevatorHeight)) - (Elevator::border*2) - 15);
+        floorText.setString(std::to_string(floors - i));
+
+        floorNumbers[i] = floorText;
+
+        // Set default 1 floor
+        floorGoTo[i] = 1;
     }
 
     if (!font.loadFromFile("resources/sansation.ttf"))
@@ -147,6 +160,8 @@ void drawMenu(sf::RenderWindow &window)
         menu[i].setString(result);
 
         window.draw(menu[i]);
+
+        window.draw(floorNumbers[i]);
     }
 
 }
