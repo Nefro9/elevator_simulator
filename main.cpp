@@ -25,8 +25,8 @@ Font font;
 
 int main()
 {
-	RenderWindow window(VideoMode(windowWidth, windowHeight), "Evelator simulator");
-	window.setFramerateLimit(60);
+    RenderWindow window(VideoMode(windowWidth, windowHeight), "Evelator simulator");
+    window.setFramerateLimit(60);
 
     Elevator elevatorLeft, elevatorRight;
 
@@ -72,12 +72,12 @@ int main()
     if (!font.loadFromFile("resources/sansation.ttf"))
         return EXIT_FAILURE;
 
-	while (window.isOpen())
-	{
-		Event event;
-		while (window.pollEvent(event))
-		{
-		    if (event.type == Event::KeyPressed)
+    while (window.isOpen())
+    {
+        Event event;
+        while (window.pollEvent(event))
+        {
+           if (event.type == Event::KeyPressed)
             {
                 switch (event.key.code)
                 {
@@ -116,13 +116,13 @@ int main()
                 }
             }
 
-			if (event.type == Event::Closed)
-				window.close();
-		}
+            if (event.type == Event::Closed)
+                window.close();
+        }
 
-		window.clear();
+        window.clear();
 
-		drawMenu(window);
+        drawMenu(window);
 
 
         if(elevatorLeft.haveRequest()) {
@@ -136,19 +136,19 @@ int main()
             elevatorRight.move();
         }
 
-		elevatorLeft.drawElevator(window);
-		elevatorLeft.drawHouse(window);
-		elevatorLeft.drawRequests(window, requestsLeft, "Left ");
+        elevatorLeft.drawElevator(window);
+        elevatorLeft.drawHouse(window);
+        elevatorLeft.drawRequests(window, requestsLeft, "Left ");
 
-		elevatorRight.drawElevator(window);
-		elevatorRight.drawHouse(window);
-		elevatorRight.drawRequests(window, requestsRight, "Right ");
+        elevatorRight.drawElevator(window);
+        elevatorRight.drawHouse(window);
+        elevatorRight.drawRequests(window, requestsRight, "Right ");
 
 
-		window.display();
-	}
+        window.display();
+    }
 
-	return 0;
+    return 0;
 }
 
 void drawMenu(RenderWindow &window)

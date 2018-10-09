@@ -3,8 +3,8 @@
 Elevator::Elevator()
 {
     object.setSize(Vector2f(elevatorWidth, elevatorHeight));
-	object.setFillColor(Color::Red);
-	object.setPosition(elevatorPositionLeft + marginLeft, elevatorPositionTop + ((floors-1) * (elevatorHeight + border)));
+    object.setFillColor(Color::Red);
+    object.setPosition(elevatorPositionLeft + marginLeft, elevatorPositionTop + ((floors-1) * (elevatorHeight + border)));
 }
 
 int Elevator::border = houseBorder;
