@@ -4,8 +4,10 @@ Elevator::Elevator()
 {
     object.setSize(Vector2f(elevatorWidth, elevatorHeight));
 	object.setFillColor(Color::Red);
-	object.setPosition(elevatorPositionLeft + marginLeft, elevatorPositionTop + ((floors-1) * (elevatorHeight + 10)));
+	object.setPosition(elevatorPositionLeft + marginLeft, elevatorPositionTop + ((floors-1) * (elevatorHeight + border)));
 }
+
+int Elevator::border = houseBorder;
 
 float Elevator::getPosX()
 {
@@ -22,10 +24,10 @@ float Elevator::getFloor()
 {
     for( int i = 0; i < floors; i = i + 1 ) {
 
-        if(getPosY() > elevatorPositionTop + (i * (elevatorHeight + 10)) && getPosY() < elevatorPositionTop + ((i+1) * (elevatorHeight + 10))) {
-            return 4-i;
-        } else if (getPosY() == elevatorPositionTop + ((i) * (elevatorHeight + 10)) && getPosY()) {
-            return 5-i;
+        if(getPosY() > elevatorPositionTop + (i * (elevatorHeight + border)) && getPosY() < elevatorPositionTop + ((i+1) * (elevatorHeight + border))) {
+            return floors-i;
+        } else if (getPosY() == elevatorPositionTop + ((i) * (elevatorHeight + border)) && getPosY()) {
+            return floors-i;
         }
     }
 
@@ -44,7 +46,7 @@ bool Elevator::haveRequest()
 void Elevator::addMargin()
 {
     marginLeft = elevatorPositionMargin;
-    object.setPosition(elevatorPositionLeft + marginLeft, elevatorPositionTop + ((floors-1) * (elevatorHeight + 10)));
+    object.setPosition(elevatorPositionLeft + marginLeft, elevatorPositionTop + ((floors-1) * (elevatorHeight + border)));
 }
 
 void Elevator::addRequest(int floorFrom, int floorTo)
@@ -65,7 +67,7 @@ void Elevator::addRequest(int floorFrom, int floorTo)
 
 void Elevator::updateStatus()
 {
-    targetPosition = elevatorPositionTop + ((10 + elevatorHeight)*(5 - requests[0].from));
+    targetPosition = elevatorPositionTop + ((border + elevatorHeight)*(floors - requests[0].from));
 
     if(getPosY() < targetPosition) {
 
@@ -109,29 +111,28 @@ void Elevator::move()
 
 void Elevator::moveUp()
 {
-    object.setPosition(getPosX(), getPosY() + 1);
+    object.setPosition(getPosX(), getPosY() + speed);
 }
 
 void Elevator::moveDown()
 {
-    object.setPosition(getPosX(), getPosY() - 1);
+    object.setPosition(getPosX(), getPosY() - speed);
 }
 
-void Elevator::drawHouse(sf::RenderWindow &window)
+void Elevator::drawHouse(RenderWindow &window)
 {
     for( int i = 0; i < floors; i = i + 1 ) {
         RectangleShape house;
         house.setSize(Vector2f(elevatorWidth, elevatorHeight));
         house.setFillColor(Color::Transparent);
         house.setOutlineColor(Color::White);
-        house.setOutlineThickness(10);
-        house.setPosition(elevatorPositionLeft + marginLeft, elevatorPositionTop + (i*elevatorHeight)+(i*10));
+        house.setOutlineThickness(border);
+        house.setPosition(elevatorPositionLeft + marginLeft, elevatorPositionTop + (i*elevatorHeight)+(i*border));
         window.draw(house);
     }
-
 }
 
-void Elevator::drawElevator(sf::RenderWindow &window)
+void Elevator::drawElevator(RenderWindow &window)
 {
    window.draw(object);
 }

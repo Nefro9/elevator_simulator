@@ -4,6 +4,7 @@
 #include <iostream>
 #include "SFML\Graphics.hpp"
 
+
 using namespace sf;
 using namespace std;
 
@@ -11,14 +12,18 @@ namespace {
     const int elevatorWidth = 40;
     const int elevatorHeight = 60;
 
-    const int elevatorPositionLeft = 200;
+    const int houseBorder = 5;
+
+    const int elevatorPositionLeft = 50;
     const int elevatorPositionTop = 100;
 
     const int elevatorPositionMargin = 350; // Space between elevators
 
+    const float speed = 0.5;
+
     const int sleepTime = 60; // sleep time on arrive position
 
-    const int floors = 5;
+    const int floors = 7;
 
     const int statusIDLE    = 0;
     const int statusUP      = 1;
@@ -43,6 +48,8 @@ class Elevator
 
     public:
         int status = statusIDLE;
+
+        static int border;
 
         Elevator();
 

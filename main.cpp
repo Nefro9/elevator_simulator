@@ -1,30 +1,25 @@
 #include <iostream>
 #include "Elevator.h"
 
-
 using namespace sf;
 using namespace std;
 
 void addRequest(Elevator &eleLeft, Elevator &eleRight);
 void drawMenu(RenderWindow &window);
 
-
 namespace {
-    const int windowWidth = 800;
-    const int windowHeight = 600;
+    const int windowWidth = 500;
+    const int windowHeight = 700;
 }
 
 
-
 int floorGoFrom = 1;
-int floorGoTo[floors] = {1, 1, 1, 1, 1};
-
+int floorGoTo[floors];
 
 
 Text menu[floors];
 Text floorNumbers[floors];
 Font font;
-
 
 int main()
 {
@@ -36,15 +31,13 @@ int main()
     elevatorRight.addMargin();
 
 
-    // Create middle menu for elevator
+    // Create middle menu and floor numbers
     for( int i = 0; i < floors; i = i + 1 ) {
-        sf::Text text;
+        Text text;
         text.setFont(font);
         text.setCharacterSize(14);
-        text.setFillColor(sf::Color::White);
-        text.setOutlineColor(sf::Color::Black);
-        text.setOutlineThickness(2.0f);
-        text.setPosition(elevatorPositionLeft + 135,  elevatorPositionTop + 20 + (i * (10 + elevatorHeight)));
+        text.setFillColor(Color::White);
+        text.setPosition(elevatorPositionLeft + 135,  elevatorPositionTop + (elevatorHeight/2) + (i * (Elevator::border + elevatorHeight)) - (Elevator::border*2));
 
         menu[i] = text;
 
@@ -66,49 +59,49 @@ int main()
 
 	while (window.isOpen())
 	{
-		sf::Event event;
+		Event event;
 		while (window.pollEvent(event))
 		{
-		    if (event.type == sf::Event::KeyPressed)
+		    if (event.type == Event::KeyPressed)
             {
                 switch (event.key.code)
                 {
-                    case sf::Keyboard::Down:
+                    case Keyboard::Down:
                         if(floorGoFrom == floors) {
                             floorGoFrom = 1;
                         } else {
                             floorGoFrom += 1;
                         }
                         break;
-                    case sf::Keyboard::Up:
+                    case Keyboard::Up:
                         if(floorGoFrom == 1) {
                             floorGoFrom = floors;
                         } else {
                             floorGoFrom -= 1;
                         }
                         break;
-                    case sf::Keyboard::Right:
+                    case Keyboard::Right:
                         if(floorGoTo[floorGoFrom-1] >= floors) {
                             floorGoTo[floorGoFrom-1] = 1;
                         } else {
                             floorGoTo[floorGoFrom-1] += 1;
                         }
                         break;
-                    case sf::Keyboard::Left:
+                    case Keyboard::Left:
                         if(floorGoTo[floorGoFrom-1] <= 1) {
                             floorGoTo[floorGoFrom-1] = floors;
                         } else {
                             floorGoTo[floorGoFrom-1] -= 1;
                         }
                         break;
-                    case sf::Keyboard::Enter:
+                    case Keyboard::Enter:
                         addRequest(elevatorLeft, elevatorRight);
                         break;
                     default: break;
                 }
             }
 
-			if (event.type == sf::Event::Closed)
+			if (event.type == Event::Closed)
 				window.close();
 		}
 
@@ -144,7 +137,7 @@ int main()
 	return 0;
 }
 
-void drawMenu(sf::RenderWindow &window)
+void drawMenu(RenderWindow &window)
 {
     for( int i = 0; i < sizeof(menu)/sizeof(*menu); i = i + 1 ) {
         std::string result;
@@ -187,7 +180,7 @@ void addRequest(Elevator &eleLeft, Elevator &eleRight)
     std::cout << "Status R:" << eleRight.status << std::endl;
     std::cout << "Go To:" << floorGoTo[floorGoFrom-1] << std::endl;
 
-    from = 6-floorGoFrom;
+    from = (floors+1)-floorGoFrom;
     to = floorGoTo[floorGoFrom-1];
 
     if(from < to) {
@@ -242,6 +235,3 @@ void addRequest(Elevator &eleLeft, Elevator &eleRight)
         std::cout << "ERROR: Can't select elevator" << std::endl;
     }
 }
-
-
-
