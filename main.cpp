@@ -157,7 +157,7 @@ void addRequest(Elevator &eleLeft, Elevator &eleRight)
     int closest, from, to, direction;
 
     //Get closest elevator
-    if(abs(eleLeft.getFloor() - floorGoFrom) >= abs(eleRight.getFloor() - floorGoFrom)) {
+    if(abs(eleLeft.getFloor() - ((floors+1)-floorGoFrom)) <= abs(eleRight.getFloor() - ((floors+1)-floorGoFrom))) {
         closest = 1;
     } else {
         closest = 2;
