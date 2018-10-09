@@ -37,10 +37,10 @@ Taip pat tikrina ar nera jau pravaziaves tos vietos.
 Taip pat pridetas rusiavimas, jeigu zmogus nuspaude keliauti zemyn is 5 auksto, bet liftas turi sustoti 6 aukste.
 Tai liftas pradziai nukeliaus i 6 auksta ir tik veliau keliaudamas zemyn, sustos pasiimti is 5 auksto.
 
-####Lifto spalvu reiksmes
-| Spalva | Reiksme|
+#### Lifto spalvu reiksmes
+| Spalva | Reiksme |
 | ------ | ------ |
-| Raudona | Liftas stovi|
-| Zalia | Liftas kyla i virsu|
-| Melyna | Liftas kyla i apacia|
-| Geltona | Liftas ilaipina ar islaipina keleivius|
+| Raudona | Liftas stovi |
+| Zalia | Liftas kyla i virsu |
+| Melyna | Liftas kyla i apacia |
+| Geltona | Liftas ilaipina ar islaipina keleivius |
