@@ -3,7 +3,7 @@
 Visas kodas susidaro is lifto objekto, panaudojant SFML biblioteka (https://www.sfml-dev.org)
 
 
-###Visas kodas veikia pagal atributus ar konstantas.
+#### Visas kodas veikia pagal atributus ar konstantas.
 Noredami pakeisti lifto parametrus ar aukstu skaiciu, uztenka pakeisti viena parametra
 Galimybe redaguoti siuos parametrus, nenukenciant veikimui:
 ```
@@ -17,7 +17,7 @@ Galimybe redaguoti siuos parametrus, nenukenciant veikimui:
 - aukstu skaicius
 ```
 
-####Prideta "debug" informacija, kuri padeda lengviau issiaskinti kur ivyko klaida.
+#### Prideta "debug" informacija, kuri padeda lengviau issiaskinti kur ivyko klaida.
 Siuo metu debug metodu isgaunama informacija:
 ```
 - Artimiausias liftas
@@ -29,7 +29,7 @@ Siuo metu debug metodu isgaunama informacija:
 - Kuri butent salyga suveike pasirenkant atitinkama lifta
 ```
 
-####Veikimo salyga
+#### Veikimo salyga
 
 Ar liftas yra arciausiai (bei kyla ta pacia kryptim is kur buvo gautas iskvietimas arba liftas stovi vietoje)
 Taip pat tikrina ar nera jau pravaziaves tos vietos.
