@@ -171,15 +171,6 @@ void addRequest(Elevator &eleLeft, Elevator &eleRight)
         closest = 2;
     }
 
-
-    std::cout << "Shorter: " <<  closest << std::endl;
-    std::cout << "Go From:" << 6-floorGoFrom << std::endl;
-    std::cout << "Current floor L:" << eleLeft.getFloor() << std::endl;
-    std::cout << "Current floor R:" << eleRight.getFloor() << std::endl;
-    std::cout << "Status L:" << eleLeft.status << std::endl;
-    std::cout << "Status R:" << eleRight.status << std::endl;
-    std::cout << "Go To:" << floorGoTo[floorGoFrom-1] << std::endl;
-
     from = (floors+1)-floorGoFrom;
     to = floorGoTo[floorGoFrom-1];
 
@@ -188,6 +179,27 @@ void addRequest(Elevator &eleLeft, Elevator &eleRight)
     } else if(from > to) {
         direction = statusDOWN;
     }
+
+
+    std::cout << "______Info_on_request________" << std::endl;
+    if(closest == 1) {
+        std::cout << "Shorter: Left" << std::endl;
+    } else {
+        std::cout << "Shorter: Right" << std::endl;
+    }
+    std::cout << "Current floor L: " << eleLeft.getFloor() << std::endl;
+    std::cout << "Current floor R: " << eleRight.getFloor() << std::endl;
+    std::cout << "Status L: " << eleLeft.getStatusText() << std::endl;
+    std::cout << "Status R: " << eleRight.getStatusText() << std::endl;
+    std::cout << "Request go from: " << from << std::endl;
+    std::cout << "Request go to: " << to << std::endl;
+    if(direction == statusUP) {
+        std::cout << "Request direction: Up" << std::endl;
+    } else {
+        std::cout << "Request direction: Down" << std::endl;
+    }
+    std::cout << "_____END_Info_on_request______" << std::endl;
+
 
 
 //
@@ -235,3 +247,6 @@ void addRequest(Elevator &eleLeft, Elevator &eleRight)
         std::cout << "ERROR: Can't select elevator" << std::endl;
     }
 }
+
+
+

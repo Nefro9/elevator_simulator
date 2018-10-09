@@ -69,6 +69,8 @@ class Elevator
 
         void drawHouse(sf::RenderWindow &window);
         void drawElevator(sf::RenderWindow &window);
+
+        string getStatusText();
 };
 
 #endif // ELEVATOR_H

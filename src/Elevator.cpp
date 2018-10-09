@@ -55,6 +55,7 @@ void Elevator::addRequest(int floorFrom, int floorTo)
     requests.push_back(newRequest);
 
 
+    // Display request and reorder
     std::cout << "___________" << std::endl;
 
     for( int i = 0; i < requests.size(); i = i + 1 ) {
@@ -137,3 +138,14 @@ void Elevator::drawElevator(RenderWindow &window)
    window.draw(object);
 }
 
+
+string Elevator::getStatusText()
+{
+    if(status == statusIDLE) {
+        return "IDLE";
+    } else if (status == statusUP) {
+        return "go up";
+    } else if (status == statusDOWN) {
+        return "go down";
+    }
+}
